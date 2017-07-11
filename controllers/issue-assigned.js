@@ -18,7 +18,7 @@ export default function issueAssigned(response) {
   }
 
   // We don't send it to you if you assigned it to yourself
-  if (response.user.displayName.toLowerCase() === changelog.toString.toLowerCase()) {
+  if ((response.user.displayName && response.user.displayName.toLowerCase()) === (changelog.toString && changelog.toString.toLowerCase())) {
     return false;
   }
 
@@ -26,7 +26,7 @@ export default function issueAssigned(response) {
 
   getUserSlackIdFromEmail(changelog.to.toLowerCase(), (err, slackId) => {
     if (err) {
-      console.log(`- No Slack ID found for email ${changelog.to.toLowerCase()} ${new Date()}`, err);
+      console.log(`- No Slack ID found for email ${changelog.to && changelog.to.toLowerCase()} ${new Date()}`, err);
     } else {
       console.log(`- Sending message to ${changelog.toString} from ${response.user.displayName} ${new Date()}`);
       slack.api('chat.postMessage', {
@@ -37,9 +37,9 @@ export default function issueAssigned(response) {
         icon_emoji: process.env.BOT_EMOJI || ':information_source:'
       }, err => {
         if (err) {
-      	  console.log('Could not notify via Slack. Error:', err);
-      	}
-	console.log(`- Message sent successfully ${new Date()}`)
+          console.log('Could not notify via Slack. Error:', err);
+        }
+        console.log(`- Message sent successfully ${new Date()}`)
       });
     }
   });

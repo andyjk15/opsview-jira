@@ -5,7 +5,7 @@ import { getUserSlackIdFromEmail } from 'controllers/get-user';
 export default function issueCommented(response) {
 
   // Announce what we're doing
-  console.log(`- Issue assigned ${new Date()}`);
+  console.log(`- Issue commented ${new Date()}`);
 
   // Attempt to find a mention in the comments
   const mentionedUsers = response.comment.body.match(/(\[~.+?\])/g);

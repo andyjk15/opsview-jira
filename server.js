@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import request from 'request';
 import redirect from 'routes/redirect';
 import issueAssigned from 'controllers/issue-assigned';
+import issueCommented from 'controllers/issue-commented';
 
 // Create the express app
 const app = express();
@@ -27,6 +28,9 @@ app.post('/jira-webhook', (req, res) => {
         console.log('- Issue assignee updated, proxy to issue assigned');
         issueAssigned(req.body);
       }
+      break;
+    case 'issue_commented':
+      issueCommented(req.body);
       break;
     // More cases can be added here to deal with various issue types
     default:

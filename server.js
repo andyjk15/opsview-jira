@@ -1,9 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import request from 'request';
-import redirect from 'routes/redirect';
-import issueAssigned from 'controllers/issue-assigned';
-import issueCommented from 'controllers/issue-commented';
+import redirect from './routes/redirect';
+import issueAssigned from './controllers/issue-assigned';
+import issueCommented from './controllers/issue-commented';
 
 // Create the express app
 const app = express();

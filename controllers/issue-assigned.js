@@ -37,7 +37,7 @@ export default function issueAssigned(response) {
         icon_emoji: process.env.BOT_EMOJI || ':information_source:'
       }, err => {
         if (err) {
-          console.log('Could not notify via Slack. Error:', err);
+          return console.log('Could not notify via Slack. Error:', err);
         }
         console.log(`- Message sent successfully ${new Date()}`)
       });

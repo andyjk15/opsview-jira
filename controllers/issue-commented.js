@@ -30,7 +30,7 @@ export default function issueCommented(response) {
         }, err => {
           if (err) {
             return console.log('Could not notify via Slack. Error:', err);
-        	}
+          }
           console.log(`- Message sent successfully ${new Date()}`)
         });
       }

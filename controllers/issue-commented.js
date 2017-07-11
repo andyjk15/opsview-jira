@@ -18,9 +18,9 @@ export default function issueCommented(response) {
   mentionedUsers.forEach(userEmail => {
     getUserSlackIdFromEmail(userEmail.replace(/(\[~|\])/g, ''), (err, slackId) => {
       if (err || !slackId) {
-        console.log(`- No Slack ID found for email ${changelog.to.toLowerCase()} ${new Date()}`, err);
+        console.log(`- No Slack ID found for email ${userEmail.replace(/(\[~|\])/g, '')} ${new Date()}`, err);
       } else {
-        console.log(`- Sending message to ${changelog.toString} from ${response.user.displayName} ${new Date()}`);
+        console.log(`- Sending message to ${userEmail.replace(/(\[~|\])/g, '')} from ${response.user.displayName} ${new Date()}`);
         slack.api('chat.postMessage', {
           text: `${response.user.displayName} mentioned you in a comment here https://opsview.atlassian.net/browse/${response.issue.key}`,
           channel: slackId,
